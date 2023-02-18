@@ -1,6 +1,8 @@
 .App {
     font-family: "Roboto", sans-serif;
-    background-color: #e8e8e8;
+    /* background-color: #f7f5ee; */
+    background-color: #c4ddb2;
+    /* background-color: #e8e8e8; */
     min-height: 100vh;
 }
 
