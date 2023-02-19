@@ -3,21 +3,26 @@ import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
+import Alert from "react-bootstrap/Alert";
 
 import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
 
 import styles from "../../styles/TaskCreateEditForm.module.css";
+import { useHistory } from "react-router-dom";
+import { axiosReq } from "../../api/axiosDefault";
 
 function TaskCreateForm() {
   const [errors, setErrors] = useState({});
 
   const [taskData, setTaskData] = useState({
     title: "",
-    content: "",
+    notes: "",
     important: false,
   });
-  const { title, content, important } = taskData;
+  const { title, notes, important } = taskData;
+
+  const history = useHistory(null);
 
   const handleChange = (event) => {
     setTaskData({
@@ -32,6 +37,26 @@ function TaskCreateForm() {
     });
   };
 
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const formData = new FormData();
+
+    formData.append('title', title);
+    formData.append('notes', notes);
+    formData.append('important', important);
+
+    try {
+        const { data } = await axiosReq.post('/tasks/', formData);
+        console.log("dataaa: ", data);
+        history.push(`/posts/${data.id}`)
+    } catch(err) {
+        if (err.response?.status !== 401) {
+            setErrors(err.response?.data);
+          }
+    }
+
+  }
+
   const textFields = (
     <div className="text-center">
       <Form.Group>
@@ -43,16 +68,26 @@ function TaskCreateForm() {
           onChange={handleChange}
         />
       </Form.Group>
+      {errors?.title?.map((message, idx) => (
+        <Alert variant="warning" key={idx}>
+          {message}
+        </Alert>
+      ))}
       <Form.Group>
-        <Form.Label>Content</Form.Label>
+        <Form.Label>Notes</Form.Label>
         <Form.Control
           as="textarea"
           rows={6}
-          name="content"
-          value={content}
+          name="notes"
+          value={notes}
           onChange={handleChange}
         />
       </Form.Group>
+      {errors?.notes?.map((message, idx) => (
+        <Alert variant="warning" key={idx}>
+          {message}
+        </Alert>
+      ))}
 
       <Form.Group className="mb-3" controlId="formBasicCheckbox">
         <Form.Check
@@ -65,7 +100,7 @@ function TaskCreateForm() {
 
       <Button
         className={`${btnStyles.Button} ${btnStyles.Blue}`}
-        onClick={() => {}}
+        onClick={() => history.goBack()}
       >
         cancel
       </Button>
@@ -76,7 +111,7 @@ function TaskCreateForm() {
   );
 
   return (
-    <Form>
+    <Form onSubmit={handleSubmit}>
       <Container className={appStyles.Content}>{textFields}</Container>
     </Form>
   );
