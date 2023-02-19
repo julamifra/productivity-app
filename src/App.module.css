@@ -1,7 +1,5 @@
 .App {
     font-family: "Roboto", sans-serif;
-    /* background-color: #f7f5ee; */
-    /* background-color: #c4ddb2; */
     min-height: 100vh;
 }
 
@@ -11,8 +9,7 @@
 }
 
 .Content {
-    background-color: #f7f5ee;;
-    /* background-color: #ffffff; */
+    background-color: #a1d387;
     padding: 10px;
     border-radius: 8px;
     border: 1px solid #dadadf;
@@ -20,7 +17,6 @@
 
 .FillerImage {
     object-fit: cover;
-    /* height: 100%; */
     border-radius: 8px;
     width: 100%;
 
