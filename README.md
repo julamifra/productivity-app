@@ -63,30 +63,33 @@ These user stories are created on GitHub as issues and they have been assigned t
 
 
 ## Technologies
+
 - [Moqups](https://app.moqups.com/) - Use to create wireframes of the site
 - GitPod: this tool has been chosen as the IDE of this project. It is a cloud development environment accessible via a browser, that can be run directly from the github repository.
-- [Github](https://github.com/) - Used to host the project
+- [Github](https://github.com/) - Used to host the project.
 - [Heroku](https://www.heroku.com/) - It is a cloud platform as a service supporting several programming languages
-- [React Bootstrap](https://react-bootstrap.github.io/) - React Library, based on Boostrap. 
-- [React](https://reactjs.org/) - JavaScript framework, used for the UI.
+- [React Bootstrap](https://react-bootstrap.github.io/) - React Library, based on Boostrap. Easy to use, with good documentation.
+- [React](https://reactjs.org/) - JavaScript framework, used for all the UI.
 
 
 ## Testing
 
-- After the deployment there have been some issues in terms of some of the user stories: ....
+- After the deployment there have been some issues in terms of some of the user stories discussed above. Some CORS issues and some problems with JWT library. In terms of the second one, this JWT was not being decrypted correctly and therefore the frontend could not deal with the user's session. It turned out to be something about the libraries in the Django Project (backend). I will comment more about this on that project.
 
-(comment what errors there are)
+- In terms of the CORS issue, it was resolved by modifying the Config Vars. 
 
 ## Deployment
 
-(comment the deployment proccess on Heroku)
+[Link to deployed site in production](https://react-productivity-app.herokuapp.com/)
+
+
+- First, create a new project on Heroku. Just for the frontend part.
+- Within Heroku, on the dasboard, click New and then Create a new app.
+- Here we have to give a name to the project and choose our region (Europe)
+- Then we have to link this with the Github repository. We have to go to the settings tab and do it from there.
+- Once this project is deployed, in this case, no Config Vars are needed.
+- But we have to copy the production url that Heroku generates and paste it in the Config Vars ("CLIENT_ORIGIN") of the backend deployment (I will talk about this in the other project).
 
 ## Credits
 
 I like to thank my tutor, Rohit, for all the recommendations he has given me. 
-
-### Content and Media
-
-- Some HTML and CSS tips have been taken from [W3Schools](https://www.w3schools.com/) and [Stack Overflow](https://stackoverflow.com/).
-
-- In addition, some ideas for the website were taken from [Zyro Blog](https://zyro.com/blog/resume-website-examples/)
