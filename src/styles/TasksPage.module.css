@@ -1,0 +1,25 @@
+.Important {
+    color: #ec9806;
+    font-size: 1.6rem;
+    padding: 7px;
+    vertical-align: middle;
+}
+
+.NotImportant {
+    color: #d4cdc0;
+    font-size: 1.6rem;
+    padding: 7px;
+    vertical-align: middle;
+}
+
+/* .Important:hover {
+    cursor: pointer;
+    transition: color ease-in-out 0.3s;
+    color: #2142b2;
+}
+
+.NotImportant:hover {
+    cursor: pointer;
+    transition: color ease-in-out 0.3s;
+    color: #2142b2;
+} */

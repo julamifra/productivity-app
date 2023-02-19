@@ -46,15 +46,14 @@ function TaskCreateForm() {
     formData.append('important', important);
 
     try {
-        const { data } = await axiosReq.post('/tasks/', formData);
+        const { data } = await axiosReq.post('tasks/', formData);
         console.log("dataaa: ", data);
-        history.push(`/posts/${data.id}`)
+        history.push(`/`)
     } catch(err) {
         if (err.response?.status !== 401) {
             setErrors(err.response?.data);
-          }
+        }
     }
-
   }
 
   const textFields = (
