@@ -13,11 +13,8 @@ export const CurrentUserProvider = ({ children }) => {
   const history = useHistory();
 
   const handleMount = async () => {
-    console.log("asdf");
     try {
-      console.log("REQ auth/user");
       const { data } = await axios.get("dj-rest-auth/user/");
-      console.log("data: ", data);
       setCurrentUser(data);
     } catch (err) {
       console.log(err);

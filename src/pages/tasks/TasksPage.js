@@ -16,14 +16,11 @@ function TasksPage() {
 
   const queryParams = new URLSearchParams(window.location.search);
   const search = queryParams.get("search");
-  console.log("search: ", search);
 
   useEffect(() => {
     const fetchTasks = async () => {
       try {
-        console.log("get data");
         const { data } = await axiosReq.get(`tasks/`);
-        console.log(data);
         setTasks(data);
         setHasloaded(true);
       } catch (err) {
@@ -45,8 +42,6 @@ function TasksPage() {
         return e;
       }),
     });
-    console.log(isChecked);
-    console.log(taskId);
     try {
       const formData = new FormData();
       formData.append('important', isChecked);
