@@ -8,25 +8,31 @@ import appStyles from "../../App.module.css";
 import styles from "../../styles/TasksPage.module.css";
 import { useLocation } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefault";
+import { useHistory } from "react-router-dom";
+
 
 function TasksPage() {
   const [tasks, setTasks] = useState({ results: [] });
   const [hasLoaded, setHasloaded] = useState(false);
   const { pathname } = useLocation();
 
+  const history = useHistory();
+
   const queryParams = new URLSearchParams(window.location.search);
   const search = queryParams.get("search");
 
+  const fetchTasks = async () => {
+    try {
+      const { data } = await axiosReq.get(`tasks/`);
+      setTasks(data);
+      setHasloaded(true);
+    } catch (err) {
+      console.log("error: ", err);
+    }
+  };
+
+
   useEffect(() => {
-    const fetchTasks = async () => {
-      try {
-        const { data } = await axiosReq.get(`tasks/`);
-        setTasks(data);
-        setHasloaded(true);
-      } catch (err) {
-        console.log("error: ", err);
-      }
-    };
     setHasloaded(false);
     fetchTasks();
   }, [pathname]);
@@ -47,7 +53,7 @@ function TasksPage() {
       formData.append('important', isChecked);
 
       await axiosReq.put(`tasks/${taskId}`, formData );
-      // history.push("/signin");
+      fetchTasks();
     } catch (err) {
       // setErrors(err.response?.data);
     }
@@ -55,14 +61,12 @@ function TasksPage() {
 
   const onClickDelete = async (event, taskId) => {
     try {
-
       await axiosReq.delete(`tasks/${taskId}` );
-      // history.push("/signin");
+      fetchTasks();
     } catch (err) {
       // setErrors(err.response?.data);
     }
   }
-
 
   return (
     <Container>
