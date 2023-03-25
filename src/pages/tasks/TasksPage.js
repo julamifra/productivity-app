@@ -38,28 +38,40 @@ function TasksPage() {
     }
   };
 
+  const mofidyTask = async (taskId, isChecked, isImportant) => {
+    try{
+      const titleTask = tasks.results.find(task=> task.id === taskId).title;
+      const formData = new FormData();
+      formData.append('title', titleTask);
+      formData.append('completed', isChecked);
+      formData.append('important', isImportant);
+      await axiosReq.put(`tasks/${taskId}/`, formData );
+
+      setTasks({
+        ...tasks,
+        results: tasks.results.map(e=> {
+          if(taskId === e.id){
+            return {...e, completed: isChecked, important: isImportant};
+          }
+          return e;
+        }),
+      });
+      } catch (err) {
+        // setErrors(err.response?.data);
+      }
+  };
 
   useEffect(() => {
     setHasloaded(false);
     fetchTasks();
   }, [pathname, currentUser]);
 
-  const handleChange = async (event, taskId) => {
-    const isChecked = event.target.checked;
-    setTasks({
-      ...tasks,
-      results: tasks.results.map(e=> {
-        if(taskId === e.id){
-          return {...e, completed: isChecked};
-        }
-        return e;
-      }),
-    });
+  const onClickCheckBox = async (event, task) => {
+    event.preventDefault();
     try {
-      const formData = new FormData();
-      formData.append('important', isChecked);
-
-      await axiosReq.put(`tasks/${taskId}`, formData );
+      const isChecked = event.target.checked;
+    
+      mofidyTask(task.id, isChecked, task.important);
       fetchTasks();
     } catch (err) {
       // setErrors(err.response?.data);
@@ -67,8 +79,27 @@ function TasksPage() {
   };
 
   const onClickDelete = async (event, taskId) => {
+    event.preventDefault();
     try {
       await axiosReq.delete(`tasks/${taskId}` );
+      fetchTasks();
+    } catch (err) {
+      // setErrors(err.response?.data);
+    }
+  }
+
+  const onClickEdit = async (event, taskId) => {
+    try {
+      fetchTasks();
+    } catch (err) {
+      // setErrors(err.response?.data);
+    }
+  }
+
+  const onClickMarkAsImportant = async (event, task, isImportant) => {
+    event.preventDefault();
+    try {
+      mofidyTask(task.id, task.completed, isImportant);
       fetchTasks();
     } catch (err) {
       // setErrors(err.response?.data);
@@ -83,14 +114,17 @@ function TasksPage() {
             {tasks.results.length ? (
               tasks.results.map((task) => (
                 <ListGroup.Item action key={task.id} variant="primary">
-                  <FormCheck type="checkbox" className="d-inline p-3" checked={task.completed} onChange={(e) => handleChange(e, task.id)}/>
+                  <FormCheck type="checkbox" className="d-inline p-3" checked={task.completed} onChange={(e) => onClickCheckBox(e, task)}/>
                   {task.title}{" "}
-                  {task.important ? (
-                    <i className={`fas fa-flag ${styles.Important}`}></i>
-                  ) : (
-                    <i className={`fas fa-flag ${styles.NotImportant}`}></i>
-                  )}
-                  <i onClick={(e) => onClickDelete(e, task.id)} className={`fas fa-trash ${styles.NotImportant}`}></i>
+                  <div style={{ float: "right"}}>
+                    {task.important ? (
+                      <i onClick={(e) => onClickMarkAsImportant(e, task, false)} className={`fas fa-flag ${styles.Important}`}></i>
+                    ) : (
+                      <i onClick={(e) => onClickMarkAsImportant(e, task, true)} className={`fas fa-flag ${styles.NotImportant}`}></i>
+                    )}
+                    <i onClick={(e) => onClickDelete(e, task.id)} className={`fas fa-trash ${styles.NotImportant}`}></i>
+                    <i onClick={(e) => onClickEdit(e, task.id)} className={`fas fa-edit ${styles.NotImportant}`}></i>
+                  </div>
                 </ListGroup.Item>
               ))
             ) : (

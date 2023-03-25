@@ -1,3 +1,7 @@
+i {
+    color: #183153;
+}
+
 .Important {
     color: #ec9806;
     font-size: 1.6rem;
@@ -6,7 +10,7 @@
 }
 
 .NotImportant {
-    color: #d4cdc0;
+    color: #183153;
     font-size: 1.6rem;
     padding: 7px;
     vertical-align: middle;
