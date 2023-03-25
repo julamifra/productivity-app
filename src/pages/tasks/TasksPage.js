@@ -22,7 +22,7 @@ function TasksPage() {
   const { pathname } = useLocation();
   const currentUser = useCurrentUser();
 
-  // const history = useHistory();
+  const history = useHistory();
 
   const queryParams = new URLSearchParams(window.location.search);
   // const search = queryParams.get("search");
@@ -91,7 +91,12 @@ function TasksPage() {
 
   const onClickEdit = async (event, taskId) => {
     try {
-      fetchTasks();
+      history.push({
+        pathname: "/tasks/create",
+        state: {
+          taskId: taskId
+        }
+      });
     } catch (err) {
       // setErrors(err.response?.data);
     }
@@ -115,43 +120,45 @@ function TasksPage() {
   return (
     <Container>
       {currentUser ? (
-      <ListGroup>
-        {hasLoaded ? (
-          <>
-            {tasks.results.length ? (
-              tasks.results.map((task) => (
-                <ListGroup.Item action key={task.id} variant={task.completed ? "success" : "primary"}>
-                  <FormCheck type="checkbox" className="d-inline p-3" checked={task.completed} onChange={(e) => onClickCheckBox(e, task)}/>
-                    <span className="font-weight-bold">{task.title}</span>
-                    <div style={{ float: "right"}}>
-                      {task.important ? (
-                        <i onClick={(e) => onClickMarkAsImportant(e, task, false)} className={`fas fa-flag ${styles.Important}`}></i>
-                      ) : (
-                        <i onClick={(e) => onClickMarkAsImportant(e, task, true)} className={`fas fa-flag ${styles.NotImportant}`}></i>
-                      )}
-                      <i onClick={(e) => onClickDelete(e, task.id)} className={`fas fa-trash ${styles.NotImportant}`}></i>
-                      <i onClick={(e) => onClickEdit(e, task.id)} className={`fas fa-edit ${styles.NotImportant}`}></i>
-                    </div>
-                    <p className="text-truncate" title={task.notes} style={{margin: 0}}><small>{task.notes}</small></p>
-                </ListGroup.Item>
-              ))
+        <>
+          <Pagination className="justify-content-center">
+                <Pagination.Prev disabled={!tasks.previous} onClick={(e) => fetchTasks(getPageNumber(tasks.previous))}>Previous</Pagination.Prev>
+                <Pagination.Next disabled={!tasks.next} onClick={(e) => fetchTasks(getPageNumber(tasks.next))}>Next</Pagination.Next>
+          </Pagination>
+          <ListGroup>
+            {hasLoaded ? (
+              <>
+                {tasks.results.length ? (
+                  tasks.results.map((task) => (
+                    <ListGroup.Item key={task.id} variant={task.completed ? "success" : "primary"}>
+                      <FormCheck type="checkbox" className="d-inline p-3" checked={task.completed} onChange={(e) => onClickCheckBox(e, task)}/>
+                        <span className="font-weight-bold">{task.title}</span>
+                        <div style={{ float: "right"}}>
+                          {task.important ? (
+                            <i onClick={(e) => onClickMarkAsImportant(e, task, false)} className={`fas fa-flag ${styles.Important}`}></i>
+                          ) : (
+                            <i onClick={(e) => onClickMarkAsImportant(e, task, true)} className={`fas fa-flag ${styles.NotImportant}`}></i>
+                          )}
+                          <i onClick={(e) => onClickDelete(e, task.id)} className={`fas fa-trash ${styles.NotImportant}`}></i>
+                          <i onClick={(e) => onClickEdit(e, task.id)} className={`fas fa-edit ${styles.NotImportant}`}></i>
+                        </div>
+                        <p className="text-truncate" title={task.notes} style={{margin: 0}}><small>{task.notes}</small></p>
+                    </ListGroup.Item>
+                  ))
+                ) : (
+                  <ListGroup.Item variant="primary">
+                    <a href="/tasks/create" className="d-inline p-3" ><i className="far fa-plus-square"></i>Add a new task...</a>
+                  </ListGroup.Item>
+                )}
+              </>
             ) : (
-              <ListGroup.Item action variant="primary">
-                <a href="/tasks/create" className="d-inline p-3" ><i className="far fa-plus-square"></i>Add a new task...</a>
-              </ListGroup.Item>
-            )}
-          </>
+              <h1>loading...</h1>
+            )} 
+          </ListGroup>
+        </>
         ) : (
-          <h1>loading...</h1>
-        )} 
-      </ListGroup>
-      ) : (
-        <div>You must be looged in!</div>
-      )}
-      <Pagination className="justify-content-center">
-        <Pagination.Prev disabled={!tasks.previous} onClick={(e) => fetchTasks(getPageNumber(tasks.previous))}>Previous</Pagination.Prev>
-        <Pagination.Next disabled={!tasks.next} onClick={(e) => fetchTasks(getPageNumber(tasks.next))}>Next</Pagination.Next>
-      </Pagination>
+          <div>You must be looged in!</div>
+        )}
     </Container>
   );
 }

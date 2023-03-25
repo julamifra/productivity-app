@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
@@ -8,9 +8,13 @@ import Alert from "react-bootstrap/Alert";
 import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
 
-import styles from "../../styles/TaskCreateEditForm.module.css";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefault";
+
+import {
+  useCurrentUser
+} from "../../contexts/CurrentUserContext";
+
 
 function TaskCreateForm() {
   const [errors, setErrors] = useState({});
@@ -23,6 +27,27 @@ function TaskCreateForm() {
   const { title, notes, important } = taskData;
 
   const history = useHistory(null);
+  const location = useLocation();
+  const currentUser = useCurrentUser();
+
+  const taskId = location.state.taskId;
+
+
+  useEffect(() => {
+    fetchTask();
+  }, [taskId]);
+
+  const fetchTask = async () => {
+    try {
+      if(currentUser){
+        const { data } = await axiosReq.get(`tasks/${taskId}/?owner__profile=${currentUser.profile_id}`);
+        console.log(data)
+        setTaskData(data);
+      }
+    } catch (err) {
+      console.log("error: ", err);
+    }
+  };
 
   const handleChange = (event) => {
     setTaskData({
@@ -30,6 +55,7 @@ function TaskCreateForm() {
       [event.target.name]: event.target.value,
     });
   };
+
   const handleChecked = (event) => {
     setTaskData({
       ...taskData,
@@ -46,8 +72,12 @@ function TaskCreateForm() {
     formData.append('important', important);
 
     try {
-        const { data } = await axiosReq.post('tasks/', formData);
-        history.push(`/`)
+      if(taskId){
+        await axiosReq.put(`tasks/${taskId}/`, formData );
+      } else {
+        await axiosReq.post('tasks/', formData);
+      }
+      history.push(`/`)
     } catch(err) {
         if (err.response?.status !== 401) {
             setErrors(err.response?.data);
@@ -96,6 +126,8 @@ function TaskCreateForm() {
           type="checkbox"
           label="Important"
           value={important}
+          checked={important}
+          onChange={()=> {}}
           onClick={handleChecked}
         />
       </Form.Group>
@@ -107,7 +139,7 @@ function TaskCreateForm() {
         cancel
       </Button>
       <Button className={`${btnStyles.Button} ${btnStyles.Blue}`} type="submit">
-        create
+        {taskId? "edit" : "create"}
       </Button>
     </div>
   );
