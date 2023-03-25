@@ -10,22 +10,29 @@ import { useLocation } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefault";
 import { useHistory } from "react-router-dom";
 
+import {
+  useCurrentUser
+} from "../../contexts/CurrentUserContext";
+
 
 function TasksPage() {
   const [tasks, setTasks] = useState({ results: [] });
   const [hasLoaded, setHasloaded] = useState(false);
   const { pathname } = useLocation();
+  const currentUser = useCurrentUser();
 
-  const history = useHistory();
+  // const history = useHistory();
 
   const queryParams = new URLSearchParams(window.location.search);
-  const search = queryParams.get("search");
+  // const search = queryParams.get("search");
 
   const fetchTasks = async () => {
     try {
-      const { data } = await axiosReq.get(`tasks/`);
-      setTasks(data);
-      setHasloaded(true);
+      if(currentUser){
+        const { data } = await axiosReq.get(`tasks/?owner__profile=${currentUser.profile_id}`);
+        setTasks(data);
+        setHasloaded(true);
+      }
     } catch (err) {
       console.log("error: ", err);
     }
@@ -35,7 +42,7 @@ function TasksPage() {
   useEffect(() => {
     setHasloaded(false);
     fetchTasks();
-  }, [pathname]);
+  }, [pathname, currentUser]);
 
   const handleChange = async (event, taskId) => {
     const isChecked = event.target.checked;
