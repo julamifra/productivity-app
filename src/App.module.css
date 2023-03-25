@@ -9,7 +9,7 @@
 }
 
 .Content {
-    background-color: #a1d387;
+    background-color: #b8daff;
     padding: 10px;
     border-radius: 8px;
     border: 1px solid #dadadf;
@@ -27,6 +27,13 @@
     max-height: 100%;
     max-width: 100%;
     object-fit: contain;
+}
+
+.truncate {
+    width: [width];
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 * {

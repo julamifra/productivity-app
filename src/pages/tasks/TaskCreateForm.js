@@ -64,6 +64,8 @@ function TaskCreateForm() {
           name="title"
           value={title}
           onChange={handleChange}
+          placeholder={"Title (50 characters max)"}
+          maxLength={"50"}
         />
       </Form.Group>
       {errors?.title?.map((message, idx) => (
@@ -78,6 +80,8 @@ function TaskCreateForm() {
           rows={6}
           name="notes"
           value={notes}
+          placeholder={"Notes (500 characters max)"}
+          maxLength={"500"}
           onChange={handleChange}
         />
       </Form.Group>
