@@ -289,7 +289,7 @@ These warnings are due to some useEffect hooks, in which the depency array is em
     1) All tasks are rendered in the list with the title, note (if added) and 3 buttons to the right (flag, bin, edit).
     2) If task is marked, its background is green.
     3) If Flag icon is marked, its turns into yellow.
-    4) If the Bin icon is clicked, the task is removed and the list is refreshed
+    4) If the Bin icon is clicked, the task is removed and the list is refreshed.
     5) If the Edit icon is clicked the user is redirected to the CreateForm page.
     6) Previous and Next button are displayed at the very top of the page.
     7) If there are more than 10 elements on the list, this buttons are enabled. Otherwise, there are disabled.
@@ -306,8 +306,8 @@ These warnings are due to some useEffect hooks, in which the depency array is em
 - __Comment section__
     1) Below the Edit Form, a Comment section is shown.
     2) If there is no comments, a "no comments..." message is displayed. Otherwise, all the comments are shown.
-    3) Comments are shown with the name of the user, the creation date and the content of the comment
-    4) The user can add a comment by entering it on the Comment input and clicking on the Comment button
+    3) Comments are shown with the name of the user, the creation date and the content of the comment.
+    4) The user can add a comment by entering it on the Comment input and clicking on the Comment button.
     5) The created comment is inmediately updated on the comment list.
 - __Log out__
     1) Clicking on the Sign Out button in the navbar, in any moment, the user is redirected to the welcome page.
@@ -325,14 +325,14 @@ The second issue regarding CORS was about the CORS Middleware (MW) order in the 
 
 ## Deployment
 
-[Link to deployed site in production](https://react-productivity-app.herokuapp.com/)
+- [Link to deployed site in production](https://react-productivity-app.herokuapp.com/)
 
 ### Frontend project
 
 - First, create a new project on Github and open it in Gitpod by clicking on the Gitpod button.
 - Then, within Gitpod, open a terminal and run the following commnad, to create a react app with the CodeInstitue template:
     `npx create-react-app . --template git+https://github.com/Code-Institute-Org/cra-template-moments.git --use-npm`
-- One problem that can be encountered is with the `"engines": {"node": "16.19.0"}` dependency in te package.json. My deployment was failing due to this missing property.
+- One problem that can be encountered is with the `"engines": {"node": "16.19.0"}` dependency in the package.json. My deployment was failing due to this missing property.
 
 - Now, on Heroku, click on New button and then Create a new app.
 - Here we have to give a name to the project and choose our region (Europe)
@@ -342,8 +342,9 @@ The second issue regarding CORS was about the CORS Middleware (MW) order in the 
 
 ### Backend project (Django API)
 
-- Deployed link: [API Productivity App](https://drf-productivity-app.herokuapp.com/)
-- Github repository: [Backend Productivity App Repo](https://github.com/julamifra/drf-productivity-app)
+- Links:
+    - Deployed link: [API Productivity App](https://drf-productivity-app.herokuapp.com/)
+    - Github repository: [Backend Productivity App Repo](https://github.com/julamifra/drf-productivity-app)
 
 - As I said in the previous section, a new Config Variable must be added in the backend project:
     - Key: CLIENT ORIGIN - Value: 'https://react-productivity-app.herokuapp.com'
