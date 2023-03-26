@@ -156,7 +156,7 @@ function TasksPage() {
         </>
         ) : (
           <div>
-            <div style={{paddingTop: "120px"}}>
+            <div style={{paddingTop: "120px", paddingBottom: "0"}}>
               <img src={welcomepage} alt="welcompage" height="100%" width="100%" className="p-10" />
             </div>
             <div className="text-center p-5">

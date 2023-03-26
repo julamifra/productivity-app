@@ -2,37 +2,75 @@
 
 The idea of Productivity App is to keep as simple as posible all your tasks listed and organised.
 
-It is basically a simple task list app where the users are able to create, edit, delete and list all the tasks that must done to complete the day in a good way.
+It is basically a simple task list app where the users are able to create, edit, delete and list all the tasks that must be done to complete the day in a good way.
 
-As it's shown bellow, this would be the final goal to achieve to complete the app development. For this project, only the basic functions have been developed.
+Users can sign up and log in, so that they can keep their tasks private and only access them by logging into the application.
+
+In addition, users can add comments to each task that will be saved with the corresponding date, so that they can track the process of each one.
 
 As main goals of this project:
-Understand the React architecture, the reuse of the components and the differents hooks that facilitate when developing. The use of the Router to navigate to diferents path within the app. And how to interact in an organised and secure way with the backend API.
+Understand the React architecture, the reuse of the components and the differents hooks that facilitate when developing. The use of the Router to navigate to differents path within the app. And how to interact in an organised and secure way with the backend API.
 
-![Responsice Mockup](./docs/wireframe.PNG)
+### Live Site and Repository Links
+
+- Frontend:
+    - Deployed link: [Productivity App ](https://react-productivity-app.herokuapp.com/)
+    - Github repository: [Frontend Productivity App Repo](https://github.com/julamifra/productivity-app)
+
+- Backend:
+    - Deployed link: [API Productivity App](https://drf-productivity-app.herokuapp.com/)
+    - Github repository: [Backend Productivity App Repo](https://github.com/julamifra/drf-productivity-app)
+
+
 
 # Table of Contents
 
-- [User Stories](#user-stories)
+- [Agile Workflow](#agile-workflow)
+    - [User Stories](#user-stories)
+    - [Agile Methodology](#agile-methodology)
 - [Features](#features)
 - [Future features](#future-features)
+- [Design](#design)
+    - [Wireframes](#wireframes)
+    - [Typography and color scheme](#typography-and-color-scheme)
+    - [Components](#components)
+    - [API](#api)
+    - [Database](#database)
 - [Technologies](#technologies)
 - [Testing](#testing)
 - [Deployment](#deployment)
 - [Credits](#credits)
 
 
-## User Stories
-1) As an user I can see a navigation so that I can search, add task or go to settings from here. 
-2) As an user I can sign up in the website so that I can have an user in the app and I am able to create new task. 
-3) As an user I can sign in so that I can see the button add task in order to create new tasks on the list. 
-4) As an user I can log out from the app so that I can't see the creation task button. 
-5) As an user I can see a task list in the home page once I am logged in. 
-6) As an user I can mark on unmark any task as done so that I can know which ones I have finished. 
-7) As an user I can mark/unmark any task as important by clicking on a flag icon so that I can prioritize my tasks 
-8) As an user I can delete a task by clicking on a bin icon so that I don't see the task any more on the list. 
 
-These user stories are created on GitHub as issues and they have been assigned to a Product Backlog project (milestone in Github). A board has been created as well to see the progress of them. This includes three columns: Backlog, In progress and Done.
+## Agile Workflow
+
+In this project, I've used an agile methodology in order to organize and prioritize the development tasks. Some User Stories have been created on the Github dashboard.
+
+### User Stories
+
+Here are presented all the User Stories created for this project and should be done in order to have all the requirements:
+
+1) Navigation bar: As an user I can see a navigation bar so that I can navigate through the different pages in the app.
+2) Sign up: As an user I can sign up in the app so that I can have an account in order to keep save all my created tasks. 
+3) Sign in: As an user I can sign in in the app with an account I've previously created so that I can access to all my saved tasks. 
+4) Sign out: As an user I can log out from the app so that I go out from the app and keed my tasks saved there.
+5) Task list: As an user I can see a task list in the home page once I am logged in. 
+6) Mark/unmark tasks as done: As an user I can mark on unmark any task as done so that I can know which ones I have finished. 
+7) Mark/unmark tasks as important: As an user I can mark/unmark any task as important by clicking on a flag icon so that I can prioritize my tasks 
+8) Delete tasks: As an user I can delete a task by clicking on a bin icon so that I don't see the task any more on the list. 
+9) Add comments: As an user I can create comments in my tasks by clicking on the edit button so that I can add extra comments to each of them. 
+10) List comments: As an user I can see the comments listed in my tasks by clicking on the edit button so that I can see the process I've previously saved in each of them. 
+
+
+### Agile Methodology
+
+These user stories are created on GitHub as issues and they have been assigned to a Product Backlog project (milestone in Github). A board has been created as well to see the progress of them. This includes three columns: To Do, In progress and Done, to follow the Agile Methodology.
+
+![Productivity App dashboard](./docs/dashboard-productivity-app.PNG)
+
+- Project github issues can be found here: [Github issues](https://github.com/julamifra/productivity-app/issues).
+
 
 ## Features
 
@@ -56,6 +94,21 @@ These user stories are created on GitHub as issues and they have been assigned t
 - __Creation task Form__
 
     - In order to access here, users must be logged in. Once in the app, a creation button will be displayed on the navigation bar and by clicking on it, a form will be shown. From here, users will be able to create new tasks for the lists.
+
+## Design
+
+### Wireframes
+
+![Responsice Mockup](./docs/wireframe.PNG)
+
+
+### Typography and color scheme
+
+### Database
+
+### Components
+
+
 
 ## Future features
 
