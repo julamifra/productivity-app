@@ -43,9 +43,8 @@ Understand the React architecture, the reuse of the components and the different
 - [Design](#design)
     - [Wireframe](#wireframe)
     - [Typography and color scheme](#typography-and-color-scheme)
-    - [Components](#components)
     - [API](#api)
-    - [Database](#database)
+    - [Components](#components)
 - [Technologies](#technologies)
 - [Testing](#testing)
 - [Deployment](#deployment)
@@ -158,6 +157,17 @@ On the left of the bar, the logo will be always display. On the right, the diffe
     - Just by typping anything they want on the Comment box and clicking on the Comment button, the comment will be added.
     - Then, the comment list will be displayed just below, sorted by the creation date.
 
+
+
+## Future features
+
+A lot of functionalities can be done to improve the app: 
+
+- a search bar can be added to search for the task easily.
+- also tasks can be categorized by tags, so that, users can have their tasks more organaised.
+- edit and remove comments functionalities can be added to each task too.
+
+
 ## Design
 
 ### Wireframe
@@ -168,18 +178,40 @@ This is the mockup followed before starting to develop the frontend project.
 
 ### Typography and color scheme
 
-### Database
+- In terms of the typography, the one used in this project has been [Roboto](https://fonts.google.com/?query=Roboto), as it is quite simple and that's what we are looking for in here.
+
+- Regarding the color scheme, these are the three colors that are presented the most:
+
+Grey: ![f7f5ee](./docs/f7f5ee.PNG)
+Blue: ![b8daff](./docs/b8daff.PNG)
+White: ![White](./docs/white.PNG)
+
+A very soft color scheme has been used. The grey color is used for the navigation bar and the blue for all the boxes presented in the app: the form boxex, the comments box and the list.
+
+### API
+
+For the API of this project, Django framework has been used. The deployed link of this API and the repository are the following:
+
+- Deployed link: [API Productivity App](https://drf-productivity-app.herokuapp.com/)
+
+- Github repository: [Backend Productivity App Repo](https://github.com/julamifra/drf-productivity-app)
+
+
+#### __Database__
+
+In terms of the backend database, this is the Model has been followed. Four tables are presented. User is given by the Django framework. Profile, Task and Comment tables have been custom-made for this project.
+
+![Database model](./docs/DatabaseModel.PNG)
+
 
 ### Components
 
+The following components have been created for this project. Some of them are reused throughout the application:
 
-
-## Future features
-
-- A lot of functionalities can be done to improve the app: a search functionality, add categories to the tasks, add tags to the tasks, share tasks, ...
-
-- search bar
-- edit and remove comments
+- Asset: This component is used to show different images accross the application. This component is used in the following pages and components: Navbar, SignInForm, SignUpForm and TaskPage.
+- NavBar: The navigation bar component is used in all the pages as it is the component that is always presented at the top of the application.
+- Comment: The comment component for example, is only used in the comment section. It is implemented to represent each comment users create in the tasks. 
+- TaskCreateForm: This component is used to show the creation form when creating a task or the edit form in order to edit a task. For the first case, no props are passed, as the form is empty in the creation of the task. For the second case, some props are passed to the component in order to show the value of the fields to edit.
 
 
 ## Technologies
