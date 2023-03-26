@@ -208,10 +208,22 @@ In terms of the backend database, this is the Model has been followed. Four tabl
 
 The following components have been created for this project. Some of them are reused throughout the application:
 
+#### Custom components
+
 - Asset: This component is used to show different images accross the application. This component is used in the following pages and components: Navbar, SignInForm, SignUpForm and TaskPage.
 - NavBar: The navigation bar component is used in all the pages as it is the component that is always presented at the top of the application.
 - Comment: The comment component for example, is only used in the comment section. It is implemented to represent each comment users create in the tasks. 
 - TaskCreateForm: This component is used to show the creation form when creating a task or the edit form in order to edit a task. For the first case, no props are passed, as the form is empty in the creation of the task. For the second case, some props are passed to the component in order to show the value of the fields to edit.
+
+#### Bootstrap components
+
+Furthermore, as I've used Bootstrap library, most of the components are taken from this library and used also withing the custom components:
+
+- Within the custom NavBar component, Bootstrap component, such as Navbar, Container, Nav, are been used.
+
+- Components such as Form, Button, Image, Col, Row, Container, Alert are used throughout the entire application.
+
+- Other main important components such as Pagination or ListGroup are used in the TaskPage component.
 
 
 ## Technologies
@@ -226,21 +238,117 @@ The following components have been created for this project. Some of them are re
 
 ## Testing
 
-- After the deployment there have been some issues in terms of some of the user stories discussed above. Some CORS issues and some problems with JWT library. In terms of the second one, this JWT was not being decrypted correctly and therefore the frontend could not deal with the user's session. It turned out to be something about the libraries in the Django Project (backend). I will comment more about this on that project.
+### W3C Markup Validator:
 
-- In terms of the CORS issue, it was resolved by modifying the Config Vars. 
+In terms of the html validor, no important errors were found. Only some info messages were shown.
+
+![W3C HTML Validtor](./docs/w3cMarkUp-testing.PNG)
+
+
+### Lighthouse Test:
+
+Regarding the Lighthouse testing of Chrome develeper tools, it has given the following results, for both Desktop and Mobile:
+
+Desktop: 
+
+![Lighthouse Validator - Desktop](./docs/lighthouse1.PNG)
+
+Mobile:
+
+![Lighthouse Validator - Mobile](./docs/lighthouse2Mobile.PNG)
+
+As we can see in the results, desktop perfomance is 88%, a big difference compare to mobile performance 53%. This low result is due to two main reasons: Reduce unused JavaScript and Minify JavaScript. The recomendation in here is to reduce JS and defer loading scripts until they are required, in order to decrease bytes consumed by network activity. 
+For a matter of time, this can be fixed now and it could be a improvment for the future.
+
+
+### ESLint:
+
+In terms of the ESLint, it was used for frontend code validation. Most of them were easily fixed. The final result is the following:
+
+![ESLint](./docs/eslintTesting.PNG)
+
+These warnings are due to some useEffect hooks, in which the depency array is empty. But this is valid as it is discussed in here [Empty Dependecy array - Stackoverflow](https://stackoverflow.com/questions/58579426/in-useeffect-whats-the-difference-between-providing-no-dependency-array-and-an)
+
+
+### Feature tests:
+
+- __No logged in user__
+    1) A user that is not logged in, can only see the navigation bar, with icons to SignUp, SignIn or go to Home.
+    2) A welcome page is shown in the Home section.
+- __Sign up page__
+    1) Signup form renders correctly, when clicking on the signup button in the navigation bar.
+    2) The img is shown properly to the right of the page.
+    3) By clicking on the Sign Up button with the correct username and password the user is redirected to the sign in page.
+    4) By clicking on the Sign in link the user is redirected to this page.
+- __Sign in page__
+    1) The Sign in page is rendered correctly when navigating to this page.
+    2) By entering the username and password the user is redirected to the Home page.
+    3) By clicking on the Sign up link the user is redirected to this page.
+    4) The Navigation Bar is updated correctly.
+- __Home page__
+    1) All tasks are rendered in the list with the title, note (if added) and 3 buttons to the right (flag, bin, edit).
+    2) If task is marked, its background is green.
+    3) If Flag icon is marked, its turns into yellow.
+    4) If the Bin icon is clicked, the task is removed and the list is refreshed
+    5) If the Edit icon is clicked the user is redirected to the CreateForm page.
+    6) Previous and Next button are displayed at the very top of the page.
+    7) If there are more than 10 elements on the list, this buttons are enabled. Otherwise, there are disabled.
+- __Create Task page__
+    1) A form is displayed with 3 fields (title, notes and important) when clicking on the Add Task button in the navbar.
+    2) If only title field is added and create a task, uer is redirected to the home page and the task is created with this title, no notes and an unmarked flag icon.
+    3) Like in 2., but also adding something in the notes field and marking the important checkbox. Now, this notes input is displayed below the title and the flag is yellow, in the home page.
+    4) If click on cancel, the user is redirected to the home page.
+- __Edit Task page__
+    1) This page is accessed by clicking on the edit icon of the corresponding task.
+    2) Fields (title, notes and important) are filled with the corresponding values.
+    3) By modifying any of the fields and clicking on the Edit buttons, the user is redirected to the home page with the values updated.
+    4) By clicking on the Cancel button the user is redirected to the home page with the same values as before entering in the Edit Task form.
+- __Comment section__
+    1) Below the Edit Form, a Comment section is shown.
+    2) If there is no comments, a "no comments..." message is displayed. Otherwise, all the comments are shown.
+    3) Comments are shown with the name of the user, the creation date and the content of the comment
+    4) The user can add a comment by entering it on the Comment input and clicking on the Comment button
+    5) The created comment is inmediately updated on the comment list.
+- __Log out__
+    1) Clicking on the Sign Out button in the navbar, in any moment, the user is redirected to the welcome page.
+    2) The navigation bar is rendered with the corresponding buttons: Home, Sign In and Sign Up. No add task button is displayed.
+
+
+## Bugs
+
+After the deployment there have been found some issues:
+
+- The first main issue it was in terms of the JWT library. The JWT was not being decrypted correctly and therefore the frontend could not deal with the user's session. It turned out to be something about the libraries in the Django Project (backend), that was solved by downgrading the version of the library. 
+
+- Another issue found was about CORS. The first solution was to modify some fields in the Config Vars section on Heroku.
+The second issue regarding CORS was about the CORS Middleware (MW) order in the backend (Django) project. By moving this MW (corsheaders.middleware.CorsMiddleware) to the first element of the MW list, this issue was fixed.
 
 ## Deployment
 
 [Link to deployed site in production](https://react-productivity-app.herokuapp.com/)
 
+### Frontend project
 
-- First, create a new project on Heroku. Just for the frontend part.
-- Within Heroku, on the dasboard, click New and then Create a new app.
+- First, create a new project on Github and open it in Gitpod by clicking on the Gitpod button.
+- Then, within Gitpod, open a terminal and run the following commnad, to create a react app with the CodeInstitue template:
+    `npx create-react-app . --template git+https://github.com/Code-Institute-Org/cra-template-moments.git --use-npm`
+- One problem that can be encountered is with the `"engines": {"node": "16.19.0"}` dependency in te package.json. My deployment was failing due to this missing property.
+
+- Now, on Heroku, click on New button and then Create a new app.
 - Here we have to give a name to the project and choose our region (Europe)
-- Then we have to link this with the Github repository. We have to go to the settings tab and do it from there.
+- Then we have to link this with the Github repository we've just created. We have to go to the settings tab and do it from there.
 - Once this project is deployed, in this case, no Config Vars are needed.
-- But we have to copy the production url that Heroku generates and paste it in the Config Vars ("CLIENT_ORIGIN") of the backend deployment (I will talk about this in the other project).
+- But we have to copy the production url that Heroku generates and paste it in the Config Vars ("CLIENT_ORIGIN") of the backend deployment.
+
+### Backend project (Django API)
+
+- Deployed link: [API Productivity App](https://drf-productivity-app.herokuapp.com/)
+- Github repository: [Backend Productivity App Repo](https://github.com/julamifra/drf-productivity-app)
+
+- As I said in the previous section, a new Config Variable must be added in the backend project:
+    - Key: CLIENT ORIGIN - Value: 'https://react-productivity-app.herokuapp.com'
+    - Make sure the slash (/) is not at the end of the URL.
+- After making this change, re-deploy the API project again on Heroku.
 
 ## Credits
 
