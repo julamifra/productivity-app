@@ -4,7 +4,7 @@ import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 
-import { useHistory, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { axiosReq } from "../../../api/axiosDefault";
 import appStyles from "../../../App.module.css";
 import styles from "../../../styles/CommentCreateEditForm.module.css";
@@ -32,7 +32,6 @@ function CommentsSection() {
     try {
       if(currentUser){
         const { data } = await axiosReq.get(`comments/?task=${taskId}`);
-        console.log("comments: ", data);
         setComments(data);
       }
     } catch (err) {
@@ -52,7 +51,6 @@ function CommentsSection() {
     formData.append('content', contentComment);
     try {
       const { data } = await axiosReq.post("/comments/", formData);
-      console.log("Response POST comments: ", data);
       setComments((prevComments) => ({
         ...prevComments,
         results: [data, ...prevComments.results],

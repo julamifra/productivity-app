@@ -5,14 +5,12 @@ import ListGroup from "react-bootstrap/ListGroup";
 import FormCheck from "react-bootstrap/FormCheck";
 import Pagination from 'react-bootstrap/Pagination';
 
-import appStyles from "../../App.module.css";
 import styles from "../../styles/TasksPage.module.css";
 import { useLocation } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefault";
 import { useHistory } from "react-router-dom";
 
 import welcomepage from "../../assets/welcomepage.jpg";
-
 
 import {
   useCurrentUser
@@ -26,9 +24,6 @@ function TasksPage() {
   const currentUser = useCurrentUser();
 
   const history = useHistory();
-
-  const queryParams = new URLSearchParams(window.location.search);
-  // const search = queryParams.get("search");
 
   const fetchTasks = async (page) => {
     try {
