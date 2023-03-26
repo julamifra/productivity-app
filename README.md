@@ -91,71 +91,71 @@ On the left of the bar, the logo will be always display. On the right, the diffe
 
 ![Navigation Bar logged out](./docs/navBar1.PNG)
 
-    - When the user hasn't logged in yet, the navigation bar will be as it's shown above. On the left, the logo of the application is displayed. On the right, the 3 different buttons: the Home, the SignIn and the SignUp buttons. Each of them will redirect the user to the corresponding page.
+- When the user hasn't logged in yet, the navigation bar will be as it's shown above. On the left, the logo of the application is displayed. On the right, the 3 different buttons: the Home, the SignIn and the SignUp buttons. Each of them will redirect the user to the corresponding page.
 
 ![Navigation Bar logged in](./docs/navBar2.PNG)
 
-    - Once the user is logged in, the navigation bar will be like it's shown in this second image. An Add Task button will be shown just beside the icon on the left. Then, on the right side, the Sign In button will be replaced by Sign Out button, and the Sign Up by the name of user is logged in.
+- Once the user is logged in, the navigation bar will be like it's shown in this second image. An Add Task button will be shown just beside the icon on the left. Then, on the right side, the Sign In button will be replaced by Sign Out button, and the Sign Up by the name of user is logged in.
 
 ### __Welcome Page__
 
 ![Welcome page](./docs/welcomepage.PNG)
  
-    - This is the first page is shown up when navigating to the website. Just a Welcome image and a message, encouraging the user to register.
+- This is the first page is shown up when navigating to the website. Just a Welcome image and a message, encouraging the user to register.
 
 ### __Sign Up Page__
 
 ![Sign up page](./docs/signUpPage.PNG)
 
-    - From here, users will be able to sign up on the application. This page can be accessed by clicking on the Sign Up button in the navigation bar, when the user is not logged in yet.
-    - To create an account, users will need to enter a username and a password. The password must contain at least 8 characters
+- From here, users will be able to sign up on the application. This page can be accessed by clicking on the Sign Up button in the navigation bar, when the user is not logged in yet.
+- To create an account, users will need to enter a username and a password. The password must contain at least 8 characters
 
 ### __Sign In Page__
 
 ![Sign in page](./docs/signInPage.PNG)
 
-    - From this page, users will be able to sign into the application. This page can be accessed by clicking on the Sign In button in the navigation bar, when the user is not logged in yet.
-    - In here, a form is displayed, where users will be able to sign in if they have been registered previously.
+- From this page, users will be able to sign into the application. This page can be accessed by clicking on the Sign In button in the navigation bar, when the user is not logged in yet.
+- In here, a form is displayed, where users will be able to sign in if they have been registered previously.
 
 ### __Tasks Page__
 
 ![Tasks Page](./docs/tasksPage.PNG)
 
-    - The first time users enter the application this home page is shown. This page is also accessed by clicking on the home button on the nav bar, when the user is already logged in. All the tasks that the corresponding user has created previously will be listed in this page.
+- The first time users enter the application this home page is shown. This page is also accessed by clicking on the home button on the nav bar, when the user is already logged in. All the tasks that the corresponding user has created previously will be listed in this page.
 
 ![Pagination](./docs/paginationFeature.PNG)
 
-    - If there are more than 10 task on the list, these buttons will be enabled, where users will be able to navigate through all the created tasks by clicking on the Next and Previous buttons just on the very top of the list.
-    - If there are 10 or less tasks on the list, these buttons will be disabled.
+- If there are more than 10 task on the list, these buttons will be enabled, where users will be able to navigate through all the created tasks by clicking on the Next and Previous buttons just on the very top of the list.
+- If there are 10 or less tasks on the list, these buttons will be disabled.
 
 ![Task Row](./docs/taskRowElement.PNG)
 
-    - Each task is presented as one row in the list and it contains the following:
-        - A checkbox to marck/unmark the task if it's already done. It will be change to green when it's checked.
-        - The title of the task.
-        - Some notes (if written) just above the title.
-        - Three buttons to the right of the row: to mark/unmarked as important, to remove the task or to edit the task.
-    - If users marked a task as important by clicking on the flag icon, this icon will turn into yellow.
-    - If users click on the bin icon, the task will be deleted and the page will be refreshed.
-    - If users click on the edit button, they will be redirected to the Edit Task Form Page (explained below).
+- Each task is presented as one row in the list and it contains the following:
+    - A checkbox to marck/unmark the task if it's already done. It will be change to green when it's checked.
+    - The title of the task.
+    - Some notes (if written) just above the title.
+    - Three buttons to the right of the row: to mark/unmarked as important, to remove the task or to edit the task.
+- If users marked a task as important by clicking on the flag icon, this icon will turn into yellow.
+- If users click on the bin icon, the task will be deleted and the page will be refreshed.
+- If users click on the edit button, they will be redirected to the Edit Task Form Page (explained below).
 
 ### __Create task Form Page__
 
 ![Create Task Form Page](./docs/createTaskPage.PNG)
 
-    - In order to access here, users must be logged in. Once in the app, a creation button will be displayed on the navigation bar and by clicking on it, a form will be shown. From here, users will be able to create new tasks.
-    - To create a task users must write the title of the task. Notes and Important fields are not required in this form. Important field will be false by default.
-    - By clicking on Cancel button, users will be redirected to the home page.
+- In order to access here, users must be logged in. Once in the app, a creation button will be displayed on the navigation bar and by clicking on it, a form will be shown. From here, users will be able to create new tasks.
+- To create a task users must write the title of the task. Notes and Important fields are not required in this form. Important field will be false by default.
+- By clicking on Cancel button, users will be redirected to the home page.
 
 ### __Edit task Form Page__
 
 ![Edit Task Form Page](./docs/editTaskPage.PNG)
 
-    - This page will be displayed if users want to edit a task. To do that, users must click on the Edit button from thre corresponding task.
-    - In here, each fields of the task (Title, Notes and Important) can be edited and saved by clicking on the Edit button.
-    - In addition, a new feature is presented here: the Comments section. In here, users can add any comment to the corresponding task, to follow the process of it in more detailed. 
-    - Just by typping anything they want on the Comment box and clicking on the Comment button, the comment will be added.
-    - Then, the comment list will be displayed just below, sorted by the creation date.
+- This page will be displayed if users want to edit a task. To do that, users must click on the Edit button from thre corresponding task.
+- In here, each fields of the task (Title, Notes and Important) can be edited and saved by clicking on the Edit button.
+- In addition, a new feature is presented here: the Comments section. In here, users can add any comment to the corresponding task, to follow the process of it in more detailed. 
+- Just by typping anything they want on the Comment box and clicking on the Comment button, the comment will be added.
+- Then, the comment list will be displayed just below, sorted by the creation date.
 
 
 
