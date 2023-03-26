@@ -15,6 +15,8 @@ import {
   useCurrentUser
 } from "../../contexts/CurrentUserContext";
 
+import CommentsSection from "./comments/CommentsSection";
+
 
 function TaskCreateForm() {
   const [errors, setErrors] = useState({});
@@ -30,7 +32,7 @@ function TaskCreateForm() {
   const location = useLocation();
   const currentUser = useCurrentUser();
 
-  const taskId = location.state.taskId;
+  const taskId = location?.state?.taskId;
 
 
   useEffect(() => {
@@ -39,9 +41,8 @@ function TaskCreateForm() {
 
   const fetchTask = async () => {
     try {
-      if(currentUser){
+      if(currentUser && taskId){
         const { data } = await axiosReq.get(`tasks/${taskId}/?owner__profile=${currentUser.profile_id}`);
-        console.log(data)
         setTaskData(data);
       }
     } catch (err) {
@@ -144,10 +145,15 @@ function TaskCreateForm() {
     </div>
   );
 
+
   return (
-    <Form onSubmit={handleSubmit}>
-      <Container className={appStyles.Content}>{textFields}</Container>
-    </Form>
+    <div>
+      <Form onSubmit={handleSubmit}>
+        <Container className={appStyles.Content}>{textFields}</Container>
+      </Form>
+      <div className="p-2"></div>
+      {taskId ? (<CommentsSection/>) : (<></>)}
+    </div>
   );
 }
 

@@ -41,7 +41,9 @@ const NavBar = () => {
       <NavLink className={styles.NavLink} to="/" onClick={handleSignOut}>
         <i className="fas fa-sign-out-alt"></i>Sign out
       </NavLink>
-      <div>{currentUser?.username}</div>
+      <Navbar.Brand className={styles.NavLink} style={{borderBottom: "solid 2px", borderTop: "solid 2px", borderRadius: "10px"}}>
+        {currentUser?.username}
+      </Navbar.Brand>
     </>
   );
   const loggedOutIcons = (

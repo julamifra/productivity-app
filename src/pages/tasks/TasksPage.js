@@ -11,6 +11,9 @@ import { useLocation } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefault";
 import { useHistory } from "react-router-dom";
 
+import welcomepage from "../../assets/welcomepage.jpg";
+
+
 import {
   useCurrentUser
 } from "../../contexts/CurrentUserContext";
@@ -157,7 +160,15 @@ function TasksPage() {
           </ListGroup>
         </>
         ) : (
-          <div>You must be looged in!</div>
+          <div>
+            <div style={{paddingTop: "120px"}}>
+              <img src={welcomepage} alt="welcompage" height="100%" width="100%" className="p-10" />
+            </div>
+            <div className="text-center p-5">
+              <h2>Welcome to Producivity App!</h2>
+              <p>You must be signed up to start using the app.</p>
+            </div>
+          </div>
         )}
     </Container>
   );

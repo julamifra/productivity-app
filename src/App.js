@@ -7,12 +7,8 @@ import SignUpForm from "./pages/auth/SignUpForm";
 import SignInForm from "./pages/auth/SignInForm";
 import TaskCreateForm from "./pages/tasks/TaskCreateForm";
 import TasksPage from "./pages/tasks/TasksPage";
-// import { useCurrentUser } from "./contexts/CurrentUserContext";
-
 
 function App() {
-  // const currentUser = useCurrentUser();
-  // const profile_id = currentUser?profile_id || "";
 
   return (
     <div className={styles.App}>
