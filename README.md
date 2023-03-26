@@ -11,6 +11,8 @@ In addition, users can add comments to each task that will be saved with the cor
 As main goals of this project:
 Understand the React architecture, the reuse of the components and the differents hooks that facilitate when developing. The use of the Router to navigate to differents path within the app. And how to interact in an organised and secure way with the backend API.
 
+![Responsice UI](./docs/responsiveUIProductivityApp.PNG)
+
 ### Live Site and Repository Links
 
 - Frontend:
@@ -29,9 +31,17 @@ Understand the React architecture, the reuse of the components and the different
     - [User Stories](#user-stories)
     - [Agile Methodology](#agile-methodology)
 - [Features](#features)
+    - [Navigation Bar](#navigation-bar)
+    - [Welcome Page](#welcome-page)
+    - [Edit task Form Page](#edit-task-page)
+    - [Sign Up Page](#sign-up-page)
+    - [Sign In Page](#sign-in-page)
+    - [Tasks Page](#tasks-page)
+    - [Create task Form Page](#create-task-form-page)
+    - [Edit task Form Page](#edit-task-form-page)
 - [Future features](#future-features)
 - [Design](#design)
-    - [Wireframes](#wireframes)
+    - [Wireframe](#wireframe)
     - [Typography and color scheme](#typography-and-color-scheme)
     - [Components](#components)
     - [API](#api)
@@ -74,33 +84,87 @@ These user stories are created on GitHub as issues and they have been assigned t
 
 ## Features
 
-- __Navigation Bar__
+In this section, the different pages and features will be presented and explained, giving a full understanding of how the application works.
 
-    - On the left, a logo. On the right, the different tabs to navigate to the different pages of the app: Home, SignIn and SignUp
-    - Once the user is signed in, a creation-task button will be displayed on the left.
+### __Navigation Bar__
 
-- __Home__
+On the left of the bar, the logo will be always display. On the right, the different buttons to navigate through the application
 
-    - This page can be accessed by clicking on the home button. All the tasks are listed in here.
+![Navigation Bar logged out](./docs/navBar1.PNG)
 
-- __Sign In__
+    - When the user hasn't logged in yet, the navigation bar will be as it's shown above. On the left, the logo of the application is displayed. On the right, the 3 different buttons: the Home, the SignIn and the SignUp buttons. Each of them will redirect the user to the corresponding page.
 
-    - In this page, a form is displayed, where users will be able to sign in if they have been registered previously.
+![Navigation Bar logged in](./docs/navBar2.PNG)
 
-- __Sign Up__
+    - Once the user is logged in, the navigation bar will be like it's shown in this second image. An Add Task button will be shown just beside the icon on the left. Then, on the right side, the Sign In button will be replaced by Sign Out button, and the Sign Up by the name of user is logged in.
 
-    - From here, users will be able to sign up on the application. Once they have they user created and after loging into the app, they will be able to create new tasks.
+### __Welcome Page__
 
-- __Creation task Form__
+![Welcome page](./docs/welcomepage.PNG)
+ 
+    - This is the first page is shown up when navigating to the website. Just a Welcome image and a message, encouraging the user to register.
 
-    - In order to access here, users must be logged in. Once in the app, a creation button will be displayed on the navigation bar and by clicking on it, a form will be shown. From here, users will be able to create new tasks for the lists.
+### __Sign Up Page__
+
+![Sign up page](./docs/signUpPage.PNG)
+
+    - From here, users will be able to sign up on the application. This page can be accessed by clicking on the Sign Up button in the navigation bar, when the user is not logged in yet.
+    - To create an account, users will need to enter a username and a password. The password must contain at least 8 characters
+
+### __Sign In Page__
+
+![Sign in page](./docs/signInPage.PNG)
+
+    - From this page, users will be able to sign into the application. This page can be accessed by clicking on the Sign In button in the navigation bar, when the user is not logged in yet.
+    - In here, a form is displayed, where users will be able to sign in if they have been registered previously.
+
+### __Tasks Page__
+
+![Tasks Page](./docs/tasksPage.PNG)
+
+    - The first time users enter the application this home page is shown. This page is also accessed by clicking on the home button on the nav bar, when the user is already logged in. All the tasks that the corresponding user has created previously will be listed in this page.
+
+![Pagination](./docs/paginationFeature.PNG)
+
+    - If there are more than 10 task on the list, these buttons will be enabled, where users will be able to navigate through all the created tasks by clicking on the Next and Previous buttons just on the very top of the list.
+    - If there are 10 or less tasks on the list, these buttons will be disabled.
+
+![Task Row](./docs/taskRowElement.PNG)
+
+    - Each task is presented as one row in the list and it contains the following:
+        - A checkbox to marck/unmark the task if it's already done. It will be change to green when it's checked.
+        - The title of the task.
+        - Some notes (if written) just above the title.
+        - Three buttons to the right of the row: to mark/unmarked as important, to remove the task or to edit the task.
+    - If users marked a task as important by clicking on the flag icon, this icon will turn into yellow.
+    - If users click on the bin icon, the task will be deleted and the page will be refreshed.
+    - If users click on the edit button, they will be redirected to the Edit Task Form Page (explained below).
+
+### __Create task Form Page__
+
+![Create Task Form Page](./docs/createTaskPage.PNG)
+
+    - In order to access here, users must be logged in. Once in the app, a creation button will be displayed on the navigation bar and by clicking on it, a form will be shown. From here, users will be able to create new tasks.
+    - To create a task users must write the title of the task. Notes and Important fields are not required in this form. Important field will be false by default.
+    - By clicking on Cancel button, users will be redirected to the home page.
+
+### __Edit task Form Page__
+
+![Edit Task Form Page](./docs/editTaskPage.PNG)
+
+    - This page will be displayed if users want to edit a task. To do that, users must click on the Edit button from thre corresponding task.
+    - In here, each fields of the task (Title, Notes and Important) can be edited and saved by clicking on the Edit button.
+    - In addition, a new feature is presented here: the Comments section. In here, users can add any comment to the corresponding task, to follow the process of it in more detailed. 
+    - Just by typping anything they want on the Comment box and clicking on the Comment button, the comment will be added.
+    - Then, the comment list will be displayed just below, sorted by the creation date.
 
 ## Design
 
-### Wireframes
+### Wireframe
 
 ![Responsice Mockup](./docs/wireframe.PNG)
 
+This is the mockup followed before starting to develop the frontend project.
 
 ### Typography and color scheme
 
@@ -113,6 +177,9 @@ These user stories are created on GitHub as issues and they have been assigned t
 ## Future features
 
 - A lot of functionalities can be done to improve the app: a search functionality, add categories to the tasks, add tags to the tasks, share tasks, ...
+
+- search bar
+- edit and remove comments
 
 
 ## Technologies
